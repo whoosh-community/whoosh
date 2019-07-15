@@ -131,8 +131,8 @@ class Fragment(object):
                 self.matched_terms.add(t.text)
 
     def __repr__(self):
-        return "<Fragment %d:%d %d>" % (self.startchar, self.endchar,
-                                        len(self.matches))
+        return "<Fragment %d:%d has %d matches>" % (self.startchar, self.endchar,
+                                                    len(self.matches))
 
     def __len__(self):
         return self.endchar - self.startchar
@@ -695,7 +695,12 @@ class Formatter(object):
         index = fragment.startchar
         text = fragment.text
 
-        for t in fragment.matches:
+        # For overlapping tokens (such as in Chinese), sort by position,
+        # then by inverse of length.
+        # Because the formatter is sequential, it will only pick the first
+        # token for a given position to highlight. This makes sure it picks
+        # the longest overlapping token.
+        for t in sorted(fragment.matches, key=lambda token: (token.startchar, -(token.endchar - token.startchar))):
             if t.startchar is None:
                 continue
             if t.startchar < index:

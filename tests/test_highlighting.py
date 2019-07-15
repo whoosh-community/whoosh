@@ -2,6 +2,7 @@
 
 from __future__ import with_statement
 
+from jieba.analyse import ChineseAnalyzer
 import pytest
 
 from whoosh import analysis, highlight, fields, qparser, query
@@ -330,3 +331,26 @@ def test_whole_noterms():
 
         hi = r[0].highlights("text", minscore=0)
         assert hi == u("alfa bravo charlie delta echo foxtrot golf")
+
+
+def test_overlapping_tokens():
+    query_string = "马克思"
+    text = "两次历史性飞跃与马克思主义中国化"
+    analyzer = ChineseAnalyzer()
+    formatter = highlight.HtmlFormatter()
+
+    terms = [token.text for token in analyzer(query_string)]
+
+    assert terms == ['马克', '马克思']
+
+    output = highlight.highlight(
+        text,
+        terms,
+        analyzer,
+        highlight.WholeFragmenter(),
+        formatter
+    )
+
+    assert output == '两次历史性飞跃与<strong class="match term0">马克思</strong>主义中国化', \
+        'The longest overlapping token 马克思 was not selected by the highlighter'
+    # as opposed to '两次历史性飞跃与<strong class="match term0">马克</strong>思主义中国化'
