@@ -341,8 +341,6 @@ def test_overlapping_tokens():
 
     terms = [token.text for token in analyzer(query_string)]
 
-    assert terms == [u('马克'), u('马克思')]
-
     output = highlight.highlight(
         text,
         terms,
