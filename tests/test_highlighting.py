@@ -2,8 +2,8 @@
 
 from __future__ import with_statement
 
-from jieba.analyse import ChineseAnalyzer
 import pytest
+from jieba.analyse import ChineseAnalyzer
 
 from whoosh import analysis, highlight, fields, qparser, query
 from whoosh.compat import u
@@ -350,5 +350,5 @@ def test_overlapping_tokens():
     )
 
     assert output == u('两次历史性飞跃与<strong class="match term0">马克思</strong>主义中国化'), \
-        'The longest overlapping token 马克思 was not selected by the highlighter'
+        'The longest overlapping token 马克思 was not selected by the highlighter' + ' : ' + output
     # as opposed to '两次历史性飞跃与<strong class="match term0">马克</strong>思主义中国化'
