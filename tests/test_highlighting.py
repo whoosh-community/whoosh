@@ -334,8 +334,8 @@ def test_whole_noterms():
 
 
 def test_overlapping_tokens():
-    query_string = "马克思"
-    text = "两次历史性飞跃与马克思主义中国化"
+    query_string = u("马克思")
+    text = u("两次历史性飞跃与马克思主义中国化")
     analyzer = ChineseAnalyzer()
     formatter = highlight.HtmlFormatter()
 
