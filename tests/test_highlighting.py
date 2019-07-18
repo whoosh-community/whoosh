@@ -334,8 +334,8 @@ def test_whole_noterms():
 
 
 def test_overlapping_tokens():
-    query_string = u("马克思")
-    text = u("两次历史性飞跃与马克思主义中国化")
+    query_string = u'马克思'
+    text = u'两次历史性飞跃与马克思主义中国化'
     analyzer = ChineseAnalyzer()
     formatter = highlight.HtmlFormatter()
 
@@ -349,6 +349,6 @@ def test_overlapping_tokens():
         formatter
     )
 
-    assert output == u('两次历史性飞跃与<strong class="match term0">马克思</strong>主义中国化'), \
-        'The longest overlapping token 马克思 was not selected by the highlighter' + ' : ' + output
+    assert output == u'两次历史性飞跃与<strong class="match term0">马克思</strong>主义中国化', \
+        u'The longest overlapping token 马克思 was not selected by the highlighter'
     # as opposed to '两次历史性飞跃与<strong class="match term0">马克</strong>思主义中国化'
