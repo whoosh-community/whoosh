@@ -1,3 +1,10 @@
 *.pyc
 __pycache__/
 .tox/
+env/
+build/
+dist/
+eggs/
+.eggs/
+*.egg
+*.egg-info/
