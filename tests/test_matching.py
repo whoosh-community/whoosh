@@ -463,6 +463,28 @@ def test_current_terms():
             m.next()
 
 
+def test_dismax():
+    schema = fields.Schema(id=fields.ID(stored=True), title=fields.TEXT, body=fields.TEXT)
+    ix = RamStorage().create_index(schema)
+
+    with ix.writer() as w:
+        w.add_document(id=u('1'), title='alfa', body='bravo')
+        w.add_document(id=u('1'), title='charlie', body='bravo')
+        w.add_document(id=u('1'), title='alfa', body='alfa')
+
+    with ix.searcher() as s:
+        qp = qparser.MultifieldParser(['title', 'body'], schema)
+        dp = qparser.DisMaxParser({"body": 1.0, "title": 2.5}, None)
+
+        query_text = u("alfa OR bravo")
+        qqp = qp.parse(query_text)
+        qdp = dp.parse(query_text)
+        rq = s.search(qqp, limit=1)
+        rd = s.search(qdp, limit=1)
+
+        assert rq[0].score < rd[0].score
+
+
 def test_exclusion():
     from datetime import datetime
 

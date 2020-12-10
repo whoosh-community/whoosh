@@ -128,7 +128,7 @@ def test_timelimit_alarm():
         c = collectors.TimeLimitCollector(c, 0.2)
         with pytest.raises(searching.TimeLimit):
             _ = s.search_with_collector(q, c)
-        assert time.time() - t < 0.5
+        assert time.time() - t < 0.5, 'Actual time interval: {}'.format(time.time() - t)
 
 
 def test_reverse_collapse():
