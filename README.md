@@ -56,8 +56,7 @@ Learning more
 
 * Join the Whoosh mailing list at http://groups.google.com/group/whoosh
 
-* File bug reports and view the Whoosh wiki at
-  http://bitbucket.org/mchaput/whoosh/
+* File bug reports at https://github.com/whoosh-community/whoosh/
 
 Getting the source
 ==================
