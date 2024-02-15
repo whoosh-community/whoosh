@@ -1,3 +1,11 @@
+Not maintained
+==============
+
+This repository is not under active maintenance because current organization owners are not reachable. See https://github.com/whoosh-community/whoosh/issues/561 for more info.
+
+The development will continue at https://github.com/Sygil-Dev/whoosh-reloaded.
+
+
 [![Build Status](https://travis-ci.org/whoosh-community/whoosh.svg?branch=master)](https://travis-ci.org/whoosh-community/whoosh)
 
 About Whoosh
