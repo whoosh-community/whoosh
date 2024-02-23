@@ -63,16 +63,3 @@ Learning more
 * Read the online documentation at https://whoosh.readthedocs.org/en/latest/
 
 * Join the Whoosh mailing list at http://groups.google.com/group/whoosh
-
-* File bug reports and view the Whoosh wiki at
-  http://bitbucket.org/mchaput/whoosh/
-
-Getting the source
-==================
-
-Download source releases from PyPI at http://pypi.python.org/pypi/Whoosh/
-
-You can check out the latest version of the source code using Mercurial::
-
-    hg clone http://bitbucket.org/mchaput/whoosh
-
