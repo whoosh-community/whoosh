@@ -395,11 +395,11 @@ class DisjunctionMaxMatcher(UnionMatcher):
         skipped = 0
         aq = a.block_quality()
         bq = b.block_quality()
-        while a.is_active() and b.is_active() and max(aq, bq) <= minquality:
-            if aq <= minquality:
+        while a.is_active() and b.is_active() and max(aq, bq) < minquality:
+            if aq < minquality:
                 skipped += a.skip_to_quality(minquality)
                 aq = a.block_quality()
-            if bq <= minquality:
+            if bq < minquality:
                 skipped += b.skip_to_quality(minquality)
                 bq = b.block_quality()
         return skipped
